@@ -7,7 +7,7 @@
     <h1>Welcome to BMI Calculator!</h1>
     <p>This calculator will help you determine your Body Mass Index (BMI), which is a measure of body fat based on your height and weight.</p>
     <div>
-        <input type="number" id="height" placeholder="Height (m)" step="0.01">
+        <input type="number" id="height" placeholder="Height (cm)"> <!-- Changed to cm and removed step -->
         <input type="number" id="weight" placeholder="Weight (kg)">
         <button id="calculate-btn">Calculate BMI</button>
         <div id="result"></div>
@@ -35,7 +35,7 @@
         });
 
         function calculateBMI(height, weight) {
-            return weight / (height ** 2); // Now height is already in meters
+            return weight / ((height / 100) ** 2); // Convert centimeters to meters by dividing by 100
         }
 
         function getBMICategory(bmi) {
