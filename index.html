@@ -2,15 +2,34 @@
 <html>
 <head>
     <title>BMI Calculator</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        input, button {
+            margin: 10px;
+            padding: 5px;
+        }
+        
+        #result {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to BMI Calculator!</h1>
-    <p>This calculator will help you determine your Body Mass Index (BMI), which is a measure of body fat based on your height and weight.</p>
-    <div>
-        <input type="number" id="height" placeholder="Height (cm)"> <!-- Changed to cm and removed step -->
-        <input type="number" id="weight" placeholder="Weight (kg)">
-        <button id="calculate-btn">Calculate BMI</button>
-        <div id="result"></div>
+    <div class="container">
+        <h1>Welcome to BMI Calculator!</h1>
+        <p>This calculator will help you determine your Body Mass Index (BMI), which is a measure of body fat based on your height and weight.</p>
+        <div>
+            <input type="number" id="height" placeholder="Height (cm)">
+            <input type="number" id="weight" placeholder="Weight (kg)">
+            <button id="calculate-btn">Calculate BMI</button>
+            <div id="result"></div>
+        </div>
     </div>
 
     <script>
@@ -35,7 +54,7 @@
         });
 
         function calculateBMI(height, weight) {
-            return weight / ((height / 100) ** 2); // Convert centimeters to meters by dividing by 100
+            return weight / ((height / 100) ** 2);
         }
 
         function getBMICategory(bmi) {
