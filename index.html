@@ -3,20 +3,81 @@
 <head>
     <title>BMI Calculator</title>
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 20px;
+            width: 90%;
+            margin: 20px;
         }
-        
-        input, button {
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 200px;
+            padding: 12px;
             margin: 10px;
-            padding: 5px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            transition: transform 0.3s ease;
         }
-        
+
+        input:focus {
+            outline: none;
+            transform: scale(1.05);
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #45a049;
+            transform: scale(1.05);
+        }
+
         #result {
-            margin-top: 20px;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 1.2em;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -49,8 +110,25 @@
 
             const bmi = calculateBMI(height, weight);
             const bmiCategory = getBMICategory(bmi);
-
-            resultDiv.textContent = `Your BMI is ${bmi.toFixed(2)}, which is ${bmiCategory}.`;
+            
+            // Add color coding to the result
+            let resultColor;
+            switch(bmiCategory) {
+                case 'Underweight':
+                    resultColor = '#FFC107';
+                    break;
+                case 'Normal':
+                    resultColor = '#4CAF50';
+                    break;
+                case 'Overweight':
+                    resultColor = '#FF9800';
+                    break;
+                case 'Obese':
+                    resultColor = '#F44336';
+                    break;
+            }
+            
+            resultDiv.innerHTML = `<span style="color: ${resultColor}">Your BMI is ${bmi.toFixed(2)}, which is ${bmiCategory}.</span>`;
         });
 
         function calculateBMI(height, weight) {
