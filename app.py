@@ -1,23 +1,27 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def bmi_calculator():
     if request.method == 'POST':
-        weight = float(request.form['weight'])
-        height = float(request.form['height'])
-        bmi = weight / (height * height)
-        
-        if bmi < 18.5:
-            category = "Underweight"
-        elif 18.5 <= bmi < 25:
-            category = "Normal weight"
-        elif 25 <= bmi < 30:
-            category = "Overweight"
-        else:
-            category = "Obese"
+        try:
+            weight = float(request.form['weight'])
+            height = float(request.form['height'])
+            bmi = weight / (height * height)
             
-        return render_template('result.html', bmi=round(bmi, 2), category=category)
+            if bmi < 18.5:
+                category = "Underweight"
+            elif 18.5 <= bmi < 25:
+                category = "Normal weight"
+            elif 25 <= bmi < 30:
+                category = "Overweight"
+            else:
+                category = "Obese"
+                
+            return render_template('result.html', bmi=round(bmi, 2), category=category)
+        except:
+            return "Error in calculation. Please check your inputs."
     return render_template('index.html')
 
 if __name__ == '__main__':
