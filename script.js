@@ -19,7 +19,7 @@ calculateBtn.addEventListener('click', () => {
 });
 
 function calculateBMI(height, weight) {
-  return weight / ((height / 100) ** 2);
+  return weight / ((height / 100) ** 2); // Convert centimeters to meters by dividing by 100
 }
 
 function getBMICategory(bmi) {
